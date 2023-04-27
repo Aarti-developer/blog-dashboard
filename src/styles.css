@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+@import "~ngx-toastr/toastr";
 
 :root{
     --primary-clr:#026467;
@@ -35,6 +37,7 @@ body{
 }
 
 .card{
+  cursor: pointer;
   background-color: var(--secondary-clr);
   border: none;
   box-shadow: 0 0 33px  -10px #0005;
