@@ -25,9 +25,14 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { environment } from "src/environments/environment.development";
 import { CategoriesComponent } from './categories/categories.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { initializeApp ,provideFirebaseApp, getApp } from '@angular/fire/app';
 import { ToastrModule } from 'ngx-toastr';
+import { AllPostComponent } from './posts/all-post/all-post.component';
+import { NewPostComponent } from './posts/new-post/new-post.component';
+import { HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +40,8 @@ import { ToastrModule } from 'ngx-toastr';
     FooterComponent,
     DashboardComponent,
     CategoriesComponent,
+    AllPostComponent,
+    NewPostComponent,
     
   ],
   imports: [
@@ -47,6 +54,9 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFireStorageModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    HttpClientModule, 
+    AngularEditorModule,
+    ReactiveFormsModule,
     // provideFirebaseApp(() => initializeApp({ ... })),
     // provideFirestore(() => getFirestore()),
   ],

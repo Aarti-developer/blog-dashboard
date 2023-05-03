@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 p-5 shadow-effect">
+      <h3 class="text-theme-primary">All Blog Posts</h3>
+      <p class="mb-5">You can add your new post here</p>
+    </div>
+  </div>
+  <form [formGroup] = 'postForm' >
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <div class="card shadow-effect">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="">Title</label>
+              <input type="text" class="form-control" (keyup) = "onTitleChanged($event)" formControlName = "title" [ngClass] = "{'is-invalid:fc.['title'].touched &&fc.['title'].invalid'}"/>
+              <div *ngIf = "fc.['title'].errors?.['required']">
+                <div class="alert alert-danger" *ngIf = 'fc.title.touched && fc.title.invalid'>Title is required. </div>
+              </div>
+              <div *ngIf = "fc.['title'].errors?.['minlenght']">
+                <div class="alert alert-danger" *ngIf = 'fc.title.touched && fc.title.invalid'> This must be atleast 10 character long </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Paramlink</label>
+              <input type="text" class="form-control" [(ngModel)] = 'parmalink' name="parmalink"  formControlName = "parmalink" />
+            </div>
+            <div class="form-group">
+              <label for="">Excerpt</label>
+              <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                class="form-control"
+                formControlName = "excerpt"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+            <label for="">Please select a post category</label>
+            <select name="" id="" class="form-control"  formControlName = "category">
+                <option value="" disabled>Please select a category</option>
+                <option value="" *ngFor="let category of categories">{{
+                  category.data.category}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for=""  >Post Image</label>
+            <img [src]="imgSrc" class="form-control img-fluid img-preview" alt="">
+            <input type="file" class="form-control" accept="image/*" (change) = "showPreview($event)" formControlName ="postImg">
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3 mb-5">
+        <div class="col-md-12">
+            <div class="card shadow-effect">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="">Content</label>
+                  <angular-editor placeholder="Add you content here"  formControlName ="content"></angular-editor>
+                  <!-- <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  class="form-control"
+                ></textarea> -->
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mb-5">
+          <button class="btn btn-info btn-theme">Save post</button>
+          <button class="btn btn-warning ml-3" routerLink="/posts">Back to posts</button>
+        </div>
+    </div>
+  </form>
+</div>
