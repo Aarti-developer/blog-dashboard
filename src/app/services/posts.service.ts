@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 
@@ -11,7 +12,8 @@ export class PostsService {
   constructor(
     private storage: AngularFireStorage,
     private afs: AngularFirestore,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   uploadImage(selectedImage: any, postData: any) {
@@ -35,6 +37,7 @@ export class PostsService {
       .add(postData)
       .then((docRef) => {
         this.toastr.success('Data Inserted Successfully ');
+        this.router.navigate(['/posts']);
       });
   }
 
@@ -51,5 +54,9 @@ export class PostsService {
           });
         })
       );
+  }
+
+  loadOneData(id: any){
+   return this.afs.doc(`posts/${id}`).valueChanges();
   }
 }
