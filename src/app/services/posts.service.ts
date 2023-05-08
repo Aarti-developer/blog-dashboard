@@ -16,7 +16,7 @@ export class PostsService {
     private router: Router
   ) {}
 
-  uploadImage(selectedImage: any, postData: any) {
+  uploadImage(selectedImage: any, postData: any, formStatus: any, id: any) {
     const filePath = `postIMG/${Date.now()}`;
     console.log(filePath);
     this.storage.upload(filePath, selectedImage).then(() => {
@@ -26,8 +26,12 @@ export class PostsService {
         .getDownloadURL()
         .subscribe((URL) => {
           postData.postImgPath = URL;
-          // console.log(postData);
-          this.saveData(postData);
+          if (formStatus == 'Edit') {
+            console.log(formStatus);
+            this.updateData(id, postData);
+          } else {
+            this.saveData(postData);
+          }
         });
     });
   }
@@ -56,7 +60,34 @@ export class PostsService {
       );
   }
 
-  loadOneData(id: any){
-   return this.afs.doc(`posts/${id}`).valueChanges();
+  loadOneData(id: any) {
+    return this.afs.doc(`posts/${id}`).valueChanges();
+  }
+
+  updateData(id: any, postData: any) {
+    this.afs
+      .doc(`posts/${id}`)
+      .update(postData)
+      .then(() => {
+        this.toastr.success('Data updated successfully');
+        this.router.navigate(['/posts']);
+      });
+  }
+
+  deleteImage(postImgPath: any, id: any) {
+    this.storage.storage
+      .refFromURL(postImgPath)
+      .delete()
+      .then(() => {
+        this.deleteData(id);
+      });
+  }
+  deleteData(id: any) {
+    this.afs
+      .doc(`posts/${id}`)
+      .delete()
+      .then(() => {
+        this.toastr.warning('Data Deleted ...!');
+      });
   }
 }
