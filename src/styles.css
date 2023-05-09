@@ -42,10 +42,18 @@ body{
   border: none;
   box-shadow: 0 0 33px  -10px #0005;
 }
-input[type=text],input[type=email]{
+input[type=text],input[type=email],input[type=password]{
   height: 60px;
   padding-left:20px ;
   font-size: 12px;
+  width: 100% !important;
+}
+.btn-theme{
+  height: 58px;
+  border: none;
+  font-size: 16px;
+  background-color: var(--primary-clr);
+  color: #fff;
   width: 100%;
 }
 .btn-sub{

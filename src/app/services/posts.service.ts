@@ -90,4 +90,10 @@ export class PostsService {
         this.toastr.warning('Data Deleted ...!');
       });
   }
+
+  markFeatured(id:any,featuredData:any){
+    this.afs.doc(`posts/${id}`).update(featuredData).then(()=>{
+      this.toastr.info('Featured status Updated');
+    })
+  }
 }

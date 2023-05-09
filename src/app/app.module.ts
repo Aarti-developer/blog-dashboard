@@ -32,6 +32,8 @@ import { AllPostComponent } from './posts/all-post/all-post.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { LoginComponent } from './auth/login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     CategoriesComponent,
     AllPostComponent,
     NewPostComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -57,6 +60,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     HttpClientModule, 
     AngularEditorModule,
     ReactiveFormsModule,
+    AngularFireAuthModule
     // provideFirebaseApp(() => initializeApp({ ... })),
     // provideFirestore(() => getFirestore()),
   ],
