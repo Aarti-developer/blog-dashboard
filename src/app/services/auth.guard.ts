@@ -26,6 +26,7 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.authService.isLoggedInGuard) {
+      console.log("Access granted");
       return true;
     } else {
       this.toastr.warning('you dont have permission to access this page');

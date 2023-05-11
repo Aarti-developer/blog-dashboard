@@ -16,7 +16,7 @@ export class AuthService {
       this.toastr.success("Logged In Successfully");
       this.loadUser();
       this.loggedIn.next(true);
-      this.isLoggedInGuard = false;
+      this.isLoggedInGuard = true;
       this.router.navigate(['/']);
     }).catch(e =>{
       this.toastr.warning(e);
@@ -33,6 +33,7 @@ export class AuthService {
       this.toastr.success('user logged out Successfully');
       localStorage.removeItem('user');
       this.loggedIn.next(false);
+      this.isLoggedInGuard = false;
 
       this.router.navigate(['/login']);
     })
